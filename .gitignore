@@ -1,0 +1,12 @@
+*.pyc
+__pycache__
+.coverage
+.pytest_cache
+conf/creds
+*,cover
+venv
+.venv
+.nox
+*.egg-info
+*~
+stsenv
