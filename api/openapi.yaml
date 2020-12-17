@@ -1,0 +1,66 @@
+openapi: "3.0.0"
+
+info:
+  title: Cray STS Token Generator
+  version: "1.0"
+servers:
+  - url: http://localhost:9090/
+
+paths:
+  /healthz:
+    get:
+      summary: Return health status
+      description: Return health status
+      operationId: sts.routes.get_healthz
+      tags:
+        - cli_ignore
+      responses:
+        '200':
+          description: Everything is ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  Status:
+                    readOnly: true
+                    type: string
+                    example: ok
+  /token:
+    put:
+      summary: Generate STS token
+      description: Generates a STS Token.
+      operationId: sts.routes.put_token
+      responses:
+        '201':
+          description: A generated STS Token
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Token"
+components:
+  schemas:
+    Token:
+      properties:
+        Credentials:
+          type: object
+          properties:
+            EndpointURL:
+              type: string
+              readOnly: true
+              example: http://foo.bar:8080
+            AccessKeyId:
+              type: string
+              readOnly: true
+              example: foo
+            SecretAccessKey:
+              type: string
+              readOnly: true
+              example: bar
+            SessionToken:
+              type: string
+              readOnly: true
+              example: baz
+            Expiration:
+              type: string
+              readOnly: true
+              example: "2019-09-24T02:17:51.739673+00:00"

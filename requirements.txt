@@ -1,0 +1,4 @@
+Flask
+connexion
+swagger-ui-bundle
+boto3
