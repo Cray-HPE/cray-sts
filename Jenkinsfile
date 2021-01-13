@@ -9,4 +9,5 @@ dockerBuildPipeline {
         description = "Secure Token Service"
         useEntryPointForTest = "false"
         product = "csm"
+        githubPushRepo = "Cray-HPE/cray-sts"
 }
