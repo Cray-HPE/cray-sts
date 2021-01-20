@@ -10,4 +10,5 @@ dockerBuildPipeline {
         useEntryPointForTest = "false"
         product = "csm"
         githubPushRepo = "Cray-HPE/cray-sts"
+        githubPushBranches =  /(release\/.*|master)/
 }
