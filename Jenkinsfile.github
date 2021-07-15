@@ -1,0 +1,50 @@
+@Library('csm-shared-library') _
+
+pipeline {
+    agent {
+        label "metal-gcp-builder"
+    }
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: "10"))
+        timestamps()
+    }
+
+    environment {
+        NAME = "cray-sts"
+        IMAGE_NAME = "cray-sts"
+        DESCRIPTION = "Implements an STS service."
+        IS_STABLE = getBuildIsStable()
+        IMAGE_VERSION = getDockerBuildVersion(isStable: env.IS_STABLE)
+        DOCKER_ARGS = getDockerBuildArgs(name: env.IMAGE_NAME, description: env.DESCRIPTION)
+        CHART_NAME = "cray-sts"
+        CHART_VERSION = getChartVersion(name: env.CHART_NAME, isStable: env.IS_STABLE)
+    }
+
+    stages {
+        stage("Build") {
+            parallel {
+                stage("Image") {
+                    steps {
+                        sh "make image"
+                    }
+                }
+
+                stage("Chart") {
+                    steps {
+                        sh "make chart"
+                    }
+                }
+            }
+        }
+
+        stage("Publish") {
+            steps {
+                script {
+                    publishCsmDockerImage(image: env.IMAGE_NAME, tag: env.IMAGE_VERSION, isStable: env.IS_STABLE)
+                    publishCsmHelmCharts(component: env.NAME, chartsPath: "${WORKSPACE}/kubernetes/.packaged", isStable: env.IS_STABLE)
+                }
+            }
+        }
+    }
+}
