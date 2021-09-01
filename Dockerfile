@@ -1,11 +1,11 @@
 ## Cray Secure Token Service Dockerfile
 ## Copyright 2019-2021 Hewlett Packard Enterprise Development LP
 
-FROM arti.dev.cray.com/baseos-docker-master-local/alpine:3.12.6 as base
+FROM artifactory.algol60.net/docker.io/alpine:3.14.2 as base
 
 RUN apk add --no-cache python3 && ln -sf python3 /usr/bin/python
 RUN python3 -m ensurepip
-RUN pip3 install --upgrade pip setuptools wheel gunicorn==20.0.4
+RUN pip3 install --upgrade pip setuptools wheel gunicorn==20.1.0
 
 ENV STS_RUNTIME "container"
 ENV STS_ENV "development"

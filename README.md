@@ -57,3 +57,21 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> buckets = s3client.list_buckets()
 
 ```
+
+
+## Updating requirements.txt
+
+Make sure that `requirements-direct.txt` is up to date with the packages that
+are directly used by STS (i.e., they are imported by the STS code).
+
+Install `requirements-direct.txt` in a venv and use `pip freeze` to get the
+new contents for requirements.txt:
+
+```
+python3 -m venv venv1
+. venv1/bin/activate
+pip install -r requirements-direct.txt
+pip freeze
+```
+
+Also update `Dockerfile` with the pinned version of `gunicorn`.
