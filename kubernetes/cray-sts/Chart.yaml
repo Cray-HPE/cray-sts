@@ -9,6 +9,10 @@ dependencies:
   - name: cray-service
     version: ~7.0.0
     repository: https://artifactory.algol60.net/artifactory/csm-helm-charts/
+maintainers:
+  - name: kimjensen-hpe
+  - name: bklei
+  - name: brantk-hpe
 appVersion: 0.7.0
 annotations:
   artifacthub.io/changes: |
