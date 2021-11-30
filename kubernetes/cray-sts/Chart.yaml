@@ -23,4 +23,3 @@ annotations:
     - name: cray-sts
       image: artifactory.algol60.net/csm-docker/stable/cray-sts:0.7.0
   artifacthub.io/license: MIT
-

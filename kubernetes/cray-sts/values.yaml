@@ -66,11 +66,11 @@ cray-service:
       name: creds
       secret:
         defaultMode: 420
-        secretName: sts-s3-credentials # This is created in ceph-baremetal
+        secretName: sts-s3-credentials  # This is created in ceph-baremetal
     rados-conf:
       name: rados-conf
       configMap:
-        name: sts-rados-config # This is created in ceph-baremetal
+        name: sts-rados-config  # This is created in ceph-baremetal
   ingress:
     enabled: true
     prefix: /apis/sts/
