@@ -1,14 +1,15 @@
 apiVersion: v2
-name: "cray-sts"
-version: 0.6.0
-description: "Kubernetes resources for cray-sts"
+name: cray-sts
+version: 0.5.0
+description: Kubernetes resources for cray-sts
 keywords:
   - cray-sts
 home: https://github.com/Cray-HPE/cray-sts
 dependencies:
   - name: cray-service
-    version: "5.0.0"
-    repository: "https://artifactory.algol60.net/artifactory/csm-helm-charts"
+    version: ~7.0.0
+    repository: https://artifactory.algol60.net/artifactory/csm-helm-charts/
+appVersion: 0.5.0
 annotations:
   artifacthub.io/changes: |
     - kind: security
@@ -20,6 +21,6 @@ annotations:
           url: https://github.com/Cray-HPE/cray-sts/pull/11
   artifacthub.io/images: |
     - name: cray-sts
-      image: artifactory.algol60.net/csm-docker/stable/cray-sts:0.4.0
+      image: artifactory.algol60.net/csm-docker/stable/cray-sts:0.5.0
   artifacthub.io/license: MIT
 

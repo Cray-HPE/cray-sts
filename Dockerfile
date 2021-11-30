@@ -1,7 +1,7 @@
 ## Cray Secure Token Service Dockerfile
 ## Copyright 2019-2021 Hewlett Packard Enterprise Development LP
 
-FROM artifactory.algol60.net/docker.io/alpine:3.14.2 as base
+FROM artifactory.algol60.net/docker.io/alpine as base
 
 RUN apk add --no-cache python3 && ln -sf python3 /usr/bin/python
 RUN python3 -m ensurepip

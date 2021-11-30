@@ -6,7 +6,6 @@
 #   repository: ""
 #   tag: "" (default = "latest")
 #   pullPolicy: "" (default = "IfNotPresent")
-
 cray-service:
   type: Deployment
   nameOverride: cray-sts
@@ -20,17 +19,18 @@ cray-service:
               matchExpressions:
                 - key: app.kubernetes.io/name
                   operator: In
-                  values: ["cray-sts"]
+                  values:
+                    - cray-sts
             topologyKey: kubernetes.io/hostname
   containers:
     cray-sts:
       name: cray-sts
       image:
         repository: artifactory.algol60.net/csm-docker/stable/cray-sts
-        pullPolicy: Always
+        pullPolicy: IfNotPresent
       env:
         - name: STS_ENV
-          value: "production"
+          value: production
       resources:
         limits:
           cpu: 1
@@ -71,8 +71,12 @@ cray-service:
       name: rados-conf
       configMap:
         name: sts-rados-config # This is created in ceph-baremetal
-
   ingress:
     enabled: true
     prefix: /apis/sts/
     uri: /
+global:
+  chart:
+    name: cray-sts
+    version: 0.5.0
+  appVersion: 0.5.0
