@@ -6,7 +6,6 @@
 #   repository: ""
 #   tag: "" (default = "latest")
 #   pullPolicy: "" (default = "IfNotPresent")
-
 cray-service:
   type: Deployment
   nameOverride: cray-sts
@@ -20,17 +19,18 @@ cray-service:
               matchExpressions:
                 - key: app.kubernetes.io/name
                   operator: In
-                  values: ["cray-sts"]
+                  values:
+                    - cray-sts
             topologyKey: kubernetes.io/hostname
   containers:
     cray-sts:
       name: cray-sts
       image:
-        repository: cray/cray-sts
-        pullPolicy: Always
+        repository: artifactory.algol60.net/csm-docker/stable/cray-sts
+        pullPolicy: IfNotPresent
       env:
         - name: STS_ENV
-          value: "production"
+          value: production
       resources:
         limits:
           cpu: 1
@@ -66,13 +66,17 @@ cray-service:
       name: creds
       secret:
         defaultMode: 420
-        secretName: sts-s3-credentials # This is created in ceph-baremetal
+        secretName: sts-s3-credentials  # This is created in ceph-baremetal
     rados-conf:
       name: rados-conf
       configMap:
-        name: sts-rados-config # This is created in ceph-baremetal
-
+        name: sts-rados-config  # This is created in ceph-baremetal
   ingress:
     enabled: true
     prefix: /apis/sts/
     uri: /
+global:
+  chart:
+    name: cray-sts
+    version: 0.7.0
+  appVersion: 0.7.0

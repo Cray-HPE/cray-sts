@@ -12,25 +12,26 @@ pipeline {
 
     environment {
         NAME = "cray-sts"
-        IMAGE_NAME = "cray-sts"
         DESCRIPTION = "Implements an STS service."
         IS_STABLE = getBuildIsStable()
-        IMAGE_VERSION = getDockerBuildVersion(isStable: env.IS_STABLE)
-        DOCKER_ARGS = getDockerBuildArgs(name: env.IMAGE_NAME, description: env.DESCRIPTION)
-        CHART_NAME = "cray-sts"
-        CHART_VERSION = getChartVersion(name: env.CHART_NAME, isStable: env.IS_STABLE)
+        VERSION = getDockerBuildVersion(isStable: env.IS_STABLE)
+        DOCKER_ARGS = getDockerBuildArgs(name: env.NAME, description: env.DESCRIPTION)
+        CHART_VERSION = getChartVersion(version: env.VERSION)
     }
 
     stages {
         stage("Build") {
             parallel {
-                stage("Image") {
+                stage('Image') {
                     steps {
                         sh "make image"
                     }
                 }
 
-                stage("Chart") {
+                stage('Chart') {
+                    environment {
+                        IMAGE = "artifactory.algol60.net/csm-docker/${env.IS_STABLE ? "stable" : "unstable"}/${env.NAME}"
+                    }
                     steps {
                         sh "make chart"
                     }
@@ -41,8 +42,8 @@ pipeline {
         stage("Publish") {
             steps {
                 script {
-                    publishCsmDockerImage(image: env.IMAGE_NAME, tag: env.IMAGE_VERSION, isStable: env.IS_STABLE)
-                    publishCsmHelmCharts(component: env.NAME, chartsPath: "${WORKSPACE}/kubernetes/.packaged", isStable: env.IS_STABLE)
+                    publishCsmDockerImage(image: env.NAME, tag: env.VERSION, isStable: env.IS_STABLE)
+                    publishCsmHelmCharts(component: env.NAME, chartsPath: "${WORKSPACE}/packages", isStable: env.IS_STABLE)
                 }
             }
         }
