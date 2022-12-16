@@ -8,7 +8,7 @@ home: https://github.com/Cray-HPE/cray-sts
 dependencies:
   - name: cray-service
     version: ~7.0.0
-    repository: https://artifactory.algol60.net/artifactory/csm-helm-charts/
+    repository: https://artifactory.algol60.net/artifactory/csm-helm-charts-private/
 maintainers:
   - name: kimjensen-hpe
   - name: bklei
