@@ -2,15 +2,15 @@ NAME ?= cray-sts
 VERSION ?= $(shell cat .version)
 
 CHART_VERSION ?= $(VERSION)
-IMAGE ?= artifactory.algol60.net/csm-docker-private/stable/${NAME}
+IMAGE ?= artifactory.algol60.net/csm-docker/stable/${NAME}
 
 CHARTDIR ?= kubernetes
 
-CHART_METADATA_IMAGE ?= artifactory.algol60.net/csm-docker-private/stable/chart-metadata
-YQ_IMAGE ?= artifactory.algol60.net/csm-docker-private/docker.io/mikefarah/yq:4
-HELM_IMAGE ?= artifactory.algol60.net/csm-docker-private/docker.io/alpine/helm:3.7.1
-HELM_UNITTEST_IMAGE ?= artifactory.algol60.net/csm-docker-private/docker.io/quintush/helm-unittest
-HELM_DOCS_IMAGE ?= artifactory.algol60.net/csm-docker-private/docker.io/jnorwood/helm-docs:v1.5.0
+CHART_METADATA_IMAGE ?= artifactory.algol60.net/csm-docker/stable/chart-metadata
+YQ_IMAGE ?= artifactory.algol60.net/docker.io/mikefarah/yq:4
+HELM_IMAGE ?= artifactory.algol60.net/docker.io/alpine/helm:3.7.1
+HELM_UNITTEST_IMAGE ?= artifactory.algol60.net/docker.io/quintush/helm-unittest
+HELM_DOCS_IMAGE ?= artifactory.algol60.net/docker.io/jnorwood/helm-docs:v1.5.0
 ifeq ($(shell uname -s),Darwin)
 	HELM_CONFIG_HOME ?= $(HOME)/Library/Preferences/helm
 else
