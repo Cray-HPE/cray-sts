@@ -4,6 +4,11 @@
 FROM artifactory.algol60.net/docker.io/alpine as base
 
 RUN apk add --no-cache python3 && ln -sf python3 /usr/bin/python
+
+ENV VIRTUAL_ENV=/app/venv
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
 RUN python3 -m ensurepip
 RUN pip3 install --upgrade pip setuptools wheel gunicorn==20.1.0
 
