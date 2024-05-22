@@ -10,7 +10,7 @@ RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 RUN python3 -m ensurepip
-RUN pip3 install --upgrade pip setuptools wheel gunicorn==20.1.0
+RUN pip3 install --upgrade pip setuptools wheel gunicorn==20.1.0 build
 
 ENV STS_RUNTIME "container"
 ENV STS_ENV "development"
