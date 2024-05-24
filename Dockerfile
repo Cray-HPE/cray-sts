@@ -41,7 +41,7 @@ RUN mkdir -p /api
 COPY ./api /api
 
 RUN mkdir -p /install
-COPY --from=base /build/dist/*.whl /install
+COPY --from=build /build/dist/*.whl /install
 RUN pip3 install /install/*.whl
 
 CMD [ "gunicorn", "--bind=0.0.0.0:8000", "--workers=4", "sts.sts:conn_app" ]
