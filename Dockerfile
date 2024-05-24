@@ -21,7 +21,7 @@ RUN mkdir -p /build
 COPY . /build
 WORKDIR /build
 
-RUN python -m build --sdist --wheel /build
+RUN python3 -m build --sdist --wheel /build
 
 # TODO: uncomment once some tests are created
 # FROM base as test
