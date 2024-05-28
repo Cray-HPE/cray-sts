@@ -1,13 +1,13 @@
 apiVersion: v2
 name: cray-sts
-version: 0.7.0
+version: 0.8.0
 description: Kubernetes resources for cray-sts
 keywords:
   - cray-sts
 home: https://github.com/Cray-HPE/cray-sts
 dependencies:
   - name: cray-service
-    version: ~7.0.0
+    version: ~10.0.5
     repository: https://artifactory.algol60.net/artifactory/csm-helm-charts/
 maintainers:
   - name: kimjensen-hpe
