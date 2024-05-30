@@ -60,7 +60,7 @@ packages/${NAME}-${CHART_VERSION}.tgz:
 
 chart-test:
 	CMD="lint ${CHARTDIR}/${NAME}" $(MAKE) helm
-	docker run --rm -v ${PWD}/${CHARTDIR}:/apps ${HELM_UNITTEST_IMAGE} -3 ${NAME}
+	docker run --rm -v ${PWD}/${CHARTDIR}:/apps ${HELM_UNITTEST_IMAGE} ${NAME}
 
 chart-images: packages/${NAME}-${CHART_VERSION}.tgz
 	{ CMD="template release $< --dry-run --replace --dependency-update" $(MAKE) -s helm; \
