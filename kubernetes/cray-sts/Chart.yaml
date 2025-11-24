@@ -23,7 +23,7 @@
 #
 apiVersion: v2
 name: cray-sts
-version: 0.8.3
+version: 0.8.4
 description: Kubernetes resources for cray-sts
 keywords:
   - cray-sts
@@ -36,7 +36,7 @@ maintainers:
   - name: kimjensen-hpe
   - name: bklei
   - name: brantk-hpe
-appVersion: 0.8.3
+appVersion: 0.8.4
 annotations:
   artifacthub.io/changes: |
     - kind: security
@@ -48,5 +48,5 @@ annotations:
           url: https://github.com/Cray-HPE/cray-sts/pull/11
   artifacthub.io/images: |
     - name: cray-sts
-      image: artifactory.algol60.net/csm-docker/stable/cray-sts:0.8.3
+      image: artifactory.algol60.net/csm-docker/stable/cray-sts:0.8.4
   artifacthub.io/license: MIT
