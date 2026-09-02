@@ -1,7 +1,7 @@
 #
 # MIT License
 #
-# (C) Copyright 2024 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2024,2026 Hewlett Packard Enterprise Development LP
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -28,7 +28,7 @@ FROM artifactory.algol60.net/docker.io/alpine:3.18 as base
 
 RUN apk add --no-cache python3 && ln -sf python3 /usr/bin/python
 RUN python3 -m ensurepip
-RUN pip3 install --upgrade pip setuptools wheel gunicorn==20.1.0
+RUN pip3 install --upgrade pip "setuptools<81.0.0" wheel gunicorn==20.1.0
 
 ENV STS_RUNTIME "container"
 ENV STS_ENV "development"
