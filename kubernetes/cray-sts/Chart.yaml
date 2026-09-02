@@ -1,7 +1,7 @@
 #
 # MIT License
 #
-# (C) Copyright 2024-2025 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2024-2026 Hewlett Packard Enterprise Development LP
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -23,7 +23,7 @@
 #
 apiVersion: v2
 name: cray-sts
-version: 0.8.4
+version: 0.8.5
 description: Kubernetes resources for cray-sts
 keywords:
   - cray-sts
@@ -37,7 +37,7 @@ maintainers:
   - name: bklei
   - name: brantk-hpe
   - name: lathanm
-appVersion: 0.8.4
+appVersion: 0.8.5
 annotations:
   artifacthub.io/changes: |
     - kind: security
@@ -49,5 +49,5 @@ annotations:
           url: https://github.com/Cray-HPE/cray-sts/pull/11
   artifacthub.io/images: |
     - name: cray-sts
-      image: artifactory.algol60.net/csm-docker/stable/cray-sts:0.8.4
+      image: artifactory.algol60.net/csm-docker/stable/cray-sts:0.8.5
   artifacthub.io/license: MIT
